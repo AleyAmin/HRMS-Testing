@@ -1,1 +1,1 @@
-# HRMS-Testing
+# A Human Resource Management System App for our Software Testing Project
