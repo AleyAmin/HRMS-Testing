@@ -12,7 +12,7 @@ public class Address {
         this.postalCode = postalCode;
         this.country = country;
     }
-// comment made by hassan to test commits and pushing to github
+
     public String getStreet() {
         return street;
     }
