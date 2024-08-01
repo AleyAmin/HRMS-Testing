@@ -1,14 +1,14 @@
+package classes;
+
 public class Address {
     private String street;
     private String city;
-    private String state;
     private String postalCode;
     private String country;
 
-    public Address(String street, String city, String state, String postalCode, String country) {
+    public Address(String street, String city, String postalCode, String country) {
         this.street = street;
         this.city = city;
-        this.state = state;
         this.postalCode = postalCode;
         this.country = country;
     }
@@ -27,14 +27,6 @@ public class Address {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public String getPostalCode() {

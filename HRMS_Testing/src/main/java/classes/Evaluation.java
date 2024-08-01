@@ -1,3 +1,5 @@
+package classes;
+
 public enum Evaluation {
     Unsatisfactory, // < 1
     NeedsImprovement, // < 2

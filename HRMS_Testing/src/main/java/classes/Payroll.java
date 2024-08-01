@@ -1,3 +1,5 @@
+package classes;
+
 public class Payroll {
     private EmployeeType employeeType;
     private double baseSalary;
@@ -6,8 +8,8 @@ public class Payroll {
     private double deductions;
     private double bonus;
 
-    public Payroll(Employee employee, double baseSalary, int hours, double tax, double deductions, double bonus) {
-        this.employeeType = employee.getEmployeeType();
+    public Payroll(EmployeeType employeeType, double baseSalary, int hours, double tax, double deductions, double bonus) {
+        this.employeeType = employeeType;
         this.baseSalary = baseSalary;
         this.hours = hours;
         this.tax = tax;
@@ -64,7 +66,16 @@ public class Payroll {
     }
 
     public double calculatePay() {
-        // add logic
-        return 0;
+        double netPay;
+
+        if (employeeType == EmployeeType.Hourly) {
+            netPay = baseSalary * hours + bonus - tax - deductions;
+        } else if (employeeType == EmployeeType.Intern) {
+            netPay = baseSalary;
+        } else {
+            netPay = baseSalary + bonus - tax - deductions;
+        }
+
+        return netPay;
     }
 }
