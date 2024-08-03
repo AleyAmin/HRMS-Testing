@@ -1,4 +1,6 @@
 package classes;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Employee {
     private String name;
@@ -9,8 +11,10 @@ public class Employee {
     private EmployeeType employeeType;
     private Payroll pay;
     private Address address;
+    private List<performance> performanceList;
+    private Evaluation evaluation;
 
-    public Employee(String name, int id, String username, String password, Address address, String department, EmployeeType employeeType) {
+    public Employee(String name, int id, String username, String password, Address address, String department, EmployeeType employeeType, Evaluation evaluation) {
         this.name = name;
         this.id = id;
         this.username = username;
@@ -18,6 +22,8 @@ public class Employee {
         this.address = address;
         this.department = department;
         this.employeeType = employeeType;
+        this.evaluation = evaluation;
+        this.performanceList = new ArrayList<>();
     }
 
     public String getName() {
@@ -82,5 +88,20 @@ public class Employee {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public List<performance> getPerformanceList() {
+        return performanceList;
+    }
+    public void addPerformance(performance performance) {
+        performanceList.add(performance);
+    }
+
+    public Evaluation getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
     }
 }
