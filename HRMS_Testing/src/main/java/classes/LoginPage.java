@@ -12,7 +12,6 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
     // private int loginStatus;
 
     public LoginPage() {
-        setVisible(true);
 
         setContentPane(LoginPanel);
         setTitle("HRMS");
