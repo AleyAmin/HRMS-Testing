@@ -42,7 +42,7 @@ public class HRemployee {
     }
 
     public Employee createEmployee(String name, int id, String username, String password, Address address, String department, EmployeeType employeeType) {
-        Employee newEmployee = new Employee(name, id, username, password, address, department, employeeType, Evaluation.Excellent);
+        Employee newEmployee = new Employee(name, id, username, password, address, department, employeeType,Evaluation.Excellent);
         addEmployee(newEmployee);
         return newEmployee;
     }
