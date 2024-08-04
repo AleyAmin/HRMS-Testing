@@ -1,6 +1,7 @@
 import classes.*;
 import org.junit.jupiter.api.*;
-import static org.junit.Assert.assertEquals;
+
+import java.util.Calendar;
 import java.util.Date;
 
 public class LeaveRequestTest {
@@ -17,8 +18,8 @@ public class LeaveRequestTest {
     public void setup() {
         Address address = new Address("Nasr city", "Cairo", "00000", "Egypt");
         employee = new Employee("Mazen", 69, "Mizo", "password", address, "Computer Engineering", EmployeeType.Hourly,Evaluation.Excellent);
-        startDate = new Date(2024 - 1900, 7, 1);
-        endDate = new Date(2024 - 1900, 7, 10);
+        startDate = new Date(2024 - 1900, Calendar.AUGUST, 1);
+        endDate = new Date(2024 - 1900, Calendar.AUGUST, 10);
         leaveRequest = new LeaveRequest(1,employee,LeaveType.VacationLeave,startDate,endDate);
     }
     @Test
@@ -44,7 +45,7 @@ public class LeaveRequestTest {
     @Test
     @DisplayName("Test testSetEmployee")
     public void testSetEmployee() {
-        Employee newEmployee = new Employee("Ali", 70, "Ali123", "newpassword", new Address("Heliopolis", "Cairo", "11111", "Egypt"), "Mechanical Engineering", EmployeeType.FullTIme, Evaluation.Excellent);
+        Employee newEmployee = new Employee("Ali", 70, "Ali123", "newpassword", new Address("Heliopolis", "Cairo", "11111", "Egypt"), "Mechanical Engineering", EmployeeType.FullTime, Evaluation.Excellent);
         leaveRequest.setEmployee(newEmployee);
         Assertions.assertEquals(newEmployee, leaveRequest.getEmployee());
     }
@@ -74,7 +75,7 @@ public class LeaveRequestTest {
     @DisplayName("Test testSetStartDate")
 
     public void testSetStartDate() {
-        Date newStartDate = new Date(2024 , 7, 5);
+        Date newStartDate = new Date(2024 , Calendar.AUGUST, 5);
         leaveRequest.setStartDate(newStartDate);
         Assertions.assertEquals(newStartDate, leaveRequest.getStartDate());
     }
@@ -90,7 +91,7 @@ public class LeaveRequestTest {
     @DisplayName("Test testSetEndDate")
 
     public void testSetEndDate() {
-        Date newEndDate = new Date(2024, 7, 15);
+        Date newEndDate = new Date(2024, Calendar.AUGUST, 15);
         leaveRequest.setEndDate(newEndDate);
         Assertions.assertEquals(newEndDate, leaveRequest.getEndDate());
     }

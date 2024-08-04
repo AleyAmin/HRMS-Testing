@@ -15,7 +15,7 @@ public class LeaveRequest {
         this.leaveType = leaveType;
         this.startDate = startDate;
         this.endDate = endDate;
-        leaveStatus = leaveStatus.Pending;
+        leaveStatus = LeaveStatus.Pending;
     }
 
     public int getId() {

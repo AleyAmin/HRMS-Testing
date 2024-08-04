@@ -2,6 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import classes.*;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -9,15 +11,14 @@ public class LeaveManagementTest {
     private LeaveManagement leaveManagement;
     private LeaveRequest leaveRequest1;
     private LeaveRequest leaveRequest2;
-    private Employee employee;
 
     @BeforeEach
     public void setUp() {
         leaveManagement = new LeaveManagement();
         Address address = new Address("Nasr city", "Cairo", "00000", "Egypt");
-        employee = new Employee("Mazen", 60, "Mizo", "password", address, "Computer Engineering", EmployeeType.Hourly,Evaluation.Excellent);
-        Date startDate = new Date(2024 - 1900, 7, 1);
-        Date endDate = new Date(2024 - 1900, 7, 10);
+        Employee employee = new Employee("Mazen", 60, "Mizo", "password", address, "Computer Engineering", EmployeeType.Hourly,Evaluation.Excellent);
+        Date startDate = new Date(2024 - 1900, Calendar.AUGUST, 1);
+        Date endDate = new Date(2024 - 1900, Calendar.AUGUST, 10);
         leaveRequest1 = new LeaveRequest(1,employee,LeaveType.VacationLeave,startDate,endDate);
         leaveRequest2 = new LeaveRequest(2,employee,LeaveType.VacationLeave,startDate,endDate);
     }

@@ -1,13 +1,12 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LeaveManagement {
-    private List<LeaveRequest> leaveRequests;
+    private ArrayList<LeaveRequest> leaveRequests;
 
     public LeaveManagement() {
-        leaveRequests = new ArrayList<>();
+        this.leaveRequests = new ArrayList<>();
     }
 
     public void addLeaveRequest(LeaveRequest leaveRequest) {
@@ -33,8 +32,8 @@ public class LeaveManagement {
         return null;
     }
 
-    public List<LeaveRequest> getAllLeaveRequests() {
-        return new ArrayList<>(leaveRequests);
+    public ArrayList<LeaveRequest> getAllLeaveRequests() {
+        return leaveRequests;
     }
 
     public void updateLeaveStatus(int requestId, LeaveStatus status) {

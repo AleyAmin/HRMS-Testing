@@ -3,7 +3,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AddressTest {
     private Address address;
@@ -21,52 +22,52 @@ public class AddressTest {
     @Test
     @DisplayName("Test Get Street")
     public void testGetStreet() {
-        Assertions.assertEquals("Zahraa ElMaadi", address.getStreet());
+        assertEquals("Zahraa ElMaadi", address.getStreet());
     }
 
     @Test
     @DisplayName("Test Set Street")
     public void testSetStreet() {
         address.setStreet("Makram");
-        Assertions.assertEquals("Makram", address.getStreet());
+        assertEquals("Makram", address.getStreet());
     }
 
     @Test
     @DisplayName("Test Get City")
     public void testGetCity() {
-        Assertions.assertEquals("Cairo", address.getCity());
+        assertEquals("Cairo", address.getCity());
     }
 
     @Test
     @DisplayName("Test Set City")
     public void testSetCity() {
         address.setCity("Giza");
-        Assertions.assertEquals("Giza", address.getCity());
+        assertEquals("Giza", address.getCity());
     }
 
     @Test
     @DisplayName("Test Get Postal Code")
     public void testGetPostalCode() {
-        Assertions.assertEquals("00000", address.getPostalCode());
+        assertEquals("00000", address.getPostalCode());
     }
 
     @Test
     @DisplayName("Test Set Postal Code")
     public void testSetPostalCode() {
         address.setPostalCode("77102");
-        Assertions.assertEquals("77102", address.getPostalCode());
+        assertEquals("77102", address.getPostalCode());
     }
 
     @Test
     @DisplayName("Test Get Country")
     public void testGetCountry() {
-        Assertions.assertEquals("Egypt", address.getCountry());
+        assertEquals("Egypt", address.getCountry());
     }
 
     @Test
     @DisplayName("Test Set Country")
     public void testSetCountry() {
         address.setCountry("England");
-        Assertions.assertEquals("England", address.getCountry());
+        assertEquals("England", address.getCountry());
     }
 }

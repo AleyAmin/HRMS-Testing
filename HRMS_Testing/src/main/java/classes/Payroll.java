@@ -66,16 +66,13 @@ public class Payroll {
     }
 
     public double calculatePay() {
-        double netPay;
 
         if (employeeType == EmployeeType.Hourly) {
-            netPay = baseSalary * hours + bonus - tax - deductions;
+            return baseSalary * hours + bonus - tax - deductions;
         } else if (employeeType == EmployeeType.Intern) {
-            netPay = baseSalary;
+            return baseSalary;
         } else {
-            netPay = baseSalary + bonus - tax - deductions;
+            return baseSalary + bonus - tax - deductions;
         }
-
-        return netPay;
     }
 }
