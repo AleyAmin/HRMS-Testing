@@ -1,6 +1,6 @@
 package classes;
 
-public enum performance {
+public enum Performance {
     Productivity,
     Quality,
     Punctuality,

@@ -10,11 +10,28 @@ public class Payroll {
 
     public Payroll(EmployeeType employeeType, double baseSalary, int hours, double tax, double deductions, double bonus) {
         this.employeeType = employeeType;
-        this.baseSalary = baseSalary;
-        this.hours = hours;
-        this.tax = tax;
-        this.deductions = deductions;
-        this.bonus = bonus;
+        if (baseSalary < 0){
+            this.baseSalary = -1;
+        }
+        if (hours < 0){
+            this.hours = -1;
+        }
+        if (tax < 0){
+            this.tax = -1;
+        }
+        if (deductions < 0){
+            this.deductions = -1;
+        }
+        if (bonus < 0){
+            this.bonus = -1;
+        }
+        if (baseSalary >= 0 && hours >= 0 && tax >= 0 && deductions >= 0 && bonus >= 0) {
+            this.baseSalary = baseSalary;
+            this.hours = hours;
+            this.tax = tax;
+            this.deductions = deductions;
+            this.bonus = bonus;
+        }
     }
 
     public EmployeeType getEmployeeType() {
@@ -30,7 +47,12 @@ public class Payroll {
     }
 
     public void setBaseSalary(double baseSalary) {
-        this.baseSalary = baseSalary;
+        if (baseSalary < 0) {
+            this.baseSalary = -1;
+        }
+        else {
+            this.baseSalary = baseSalary;
+        }
     }
 
     public int getHours() {
@@ -38,7 +60,12 @@ public class Payroll {
     }
 
     public void setHours(int hours) {
-        this.hours = hours;
+        if (hours < 0) {
+            this.hours = -1;
+        }
+        else {
+            this.hours = hours;
+        }
     }
 
     public double getTax() {
@@ -46,7 +73,12 @@ public class Payroll {
     }
 
     public void setTax(double tax) {
-        this.tax = tax;
+        if (tax < 0) {
+            this.tax = -1;
+        }
+        else {
+            this.tax = tax;
+        }
     }
 
     public double getDeductions() {
@@ -54,7 +86,12 @@ public class Payroll {
     }
 
     public void setDeductions(double deductions) {
-        this.deductions = deductions;
+        if (deductions < 0) {
+            this.deductions = -1;
+        }
+        else {
+            this.deductions = deductions;
+        }
     }
 
     public double getBonus() {
@@ -62,7 +99,12 @@ public class Payroll {
     }
 
     public void setBonus(double bonus) {
-        this.bonus = bonus;
+        if (bonus < 0) {
+            this.bonus = -1;
+        }
+        else {
+            this.bonus = bonus;
+        }
     }
 
     public double calculatePay() {

@@ -11,7 +11,7 @@ public class Employee {
     private EmployeeType employeeType;
     private Payroll pay;
     private Address address;
-    private List<performance> performanceList;
+    private List<Performance> performanceList;
     private Evaluation evaluation;
 
     public Employee(String name, int id, String username, String password, Address address, String department, EmployeeType employeeType, Evaluation evaluation) {
@@ -90,10 +90,10 @@ public class Employee {
         this.address = address;
     }
 
-    public List<performance> getPerformanceList() {
+    public List<Performance> getPerformanceList() {
         return performanceList;
     }
-    public void addPerformance(performance performance) {
+    public void addPerformance(Performance performance) {
         performanceList.add(performance);
     }
 

@@ -24,7 +24,7 @@ public class PayrollTest {
         fullTimePayroll = new Payroll(EmployeeType.FullTime, 5000, 0, 1000, 500, 200);
         partTimePayroll = new Payroll(EmployeeType.PartTime, 2500, 0, 500, 250, 100);
         hourlyPayroll = new Payroll(EmployeeType.Hourly, 20, 160, 300, 150, 50);
-        internPayroll = new Payroll(EmployeeType.Intern, 1000, 0, 100, 50, 0); // passed tax and deductions to make sure the calculation is working
+        internPayroll = new Payroll(EmployeeType.Intern, 1000, 0, 100, 50, 0);
     }
 
     @Test
@@ -53,6 +53,41 @@ public class PayrollTest {
     public void testInternPay() {
         double expectedPay = 1000;
         assertEquals(expectedPay, internPayroll.calculatePay());
+    }
+
+    @Test
+    @DisplayName("Test Invalid Base Salary")
+    public void testInvalidBaseSalary() {
+        Payroll invalidPayroll = new Payroll(EmployeeType.FullTime, -5000, 0, 1000, 500, 200);
+        assertEquals(-1, invalidPayroll.getBaseSalary());
+    }
+
+    @Test
+    @DisplayName("Test Invalid Hours")
+    public void testInvalidHours() {
+        Payroll invalidPayroll = new Payroll(EmployeeType.Hourly, 20, -160, 300, 150, 50);
+        assertEquals(-1, invalidPayroll.getHours());
+    }
+
+    @Test
+    @DisplayName("Test Invalid Tax")
+    public void testInvalidTax() {
+        Payroll invalidPayroll = new Payroll(EmployeeType.FullTime, 5000, 0, -1000, 500, 200);
+        assertEquals(-1, invalidPayroll.getTax());
+    }
+
+    @Test
+    @DisplayName("Test Invalid Deductions")
+    public void testInvalidDeductions() {
+        Payroll invalidPayroll = new Payroll(EmployeeType.FullTime, 5000, 0, 1000, -500, 200);
+        assertEquals(-1, invalidPayroll.getDeductions());
+    }
+
+    @Test
+    @DisplayName("Test Invalid Bonus")
+    public void testInvalidBonus() {
+        Payroll invalidPayroll = new Payroll(EmployeeType.FullTime, 5000, 0, 1000, 500, -200);
+        assertEquals(-1, invalidPayroll.getBonus());
     }
 
     @Test
