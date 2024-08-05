@@ -18,6 +18,7 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
 
     EmployeeType employeeType;
     HRemployee hre;
+    int ID;
 
     public EditEmployeeDataPage(HRemployee hre, String n, String u, String d, String t) {
         this.hre = hre;
@@ -37,7 +38,6 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
         EmpTypeBox.setSelectedItem(t);
     }
 
-    int ID;
     public void EmployeeId(String id){
         ID = Integer.parseInt(id);
     }

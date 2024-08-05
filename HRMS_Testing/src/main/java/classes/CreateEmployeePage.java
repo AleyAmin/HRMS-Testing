@@ -42,6 +42,8 @@ public class CreateEmployeePage extends JFrame implements ActionListener, KeyLis
         }
         else if (!CheckUniqueId(Integer.parseInt(IDField.getText()))){
             return 0;
+        } else if (!CheckUniqueUsername(UsernameField.getText())) {
+            return -2;
         }
         Employee employee = new Employee(NameField.getText(),Integer.parseInt(IDField.getText()),UsernameField.getText(),PasswordField.getText(),null, DepartmentField.getText(),EmployeeType.valueOf(EmpTypeBox.getSelectedItem().toString()),Evaluation.Excellent);
         employee.setPay(null);
@@ -54,6 +56,16 @@ public class CreateEmployeePage extends JFrame implements ActionListener, KeyLis
 
         for (Employee employee : employees) {
             if (employee.getId() == id) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean CheckUniqueUsername(String username) {
+        List<Employee> employees = hre.getAllEmployees();
+        for (Employee employee : employees) {
+            if (employee.getUsername().equals(username)) {
                 return false;
             }
         }
@@ -74,8 +86,9 @@ public class CreateEmployeePage extends JFrame implements ActionListener, KeyLis
             else if(status == -1) {
                 JOptionPane.showMessageDialog(CreateEmployeePanel, "Please fill out all the fields", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
-
+            else if(status == -2) {
+                JOptionPane.showMessageDialog(CreateEmployeePanel, "Username already exists", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         else if (e.getSource() == cancelButton) {
             setVisible(false);
