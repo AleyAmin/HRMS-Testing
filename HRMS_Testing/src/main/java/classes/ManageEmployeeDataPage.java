@@ -3,56 +3,67 @@ package classes;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.util.List;
 
 public class ManageEmployeeDataPage extends JFrame implements ActionListener, KeyListener {
     private JPanel ManageEmployeeDataPanel;
+    private JButton addButton;
+    private JButton editButton;
+    private JButton removeButton;
+    private JButton backButton;
+    private JScrollPane TablePane;
     private JTable EmployeeDataTable;
-    private JLabel EmployeeDataLable;
-    private JButton EditEmployeeDataButton;
 
     public ManageEmployeeDataPage() {
-        ManageEmployeeDataPanel = new JPanel();
         setContentPane(ManageEmployeeDataPanel);
         setTitle("Manage Employee Data");
         setSize(500,500);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        Main main = new Main();
+        main.init();
 
-        // Data to be displayed in the JTable
-        String[][] data = {
-                { "", "", "", "" , "" , "" , "" , ""  },
-        };
+        List<Employee> employees = main.hre.getAllEmployees();
 
-        // Column Names
-        String[] columnNames = { "Name", "ID", "username", "Department", "Type", "pay", "Address", "Evaluation" };
+        String[] columnNames = { "Name", "ID", "Username", "Department", "Type", "Pay", "Evaluation" };
 
-        // Initializing the JTable
-        EditEmployeeDataButton = new JButton("Edit Employee");
-        EmployeeDataTable = new JTable(data, columnNames);
-        // adding it to JScrollPane
-        JScrollPane sp = new JScrollPane(EmployeeDataTable);
-        ManageEmployeeDataPanel.add(sp);
-        ManageEmployeeDataPanel.add(EditEmployeeDataButton);
-        // Frame Visible = true
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        for (Employee employee : employees) {
+            Object[] row = {
+                    employee.getName(),
+                    employee.getId(),
+                    employee.getUsername(),
+                    employee.getDepartment(),
+                    employee.getEmployeeType(),
+                    employee.getPay().calculatePay(),
+                    employee.getEvaluation()
+            };
+            model.addRow(row);
+        }
+
+        EmployeeDataTable.setModel(model);
+
         setVisible(true);
     }
 
-    public void EditEmployee(MouseEvent e) {
-        DefaultTableModel model = (DefaultTableModel) EmployeeDataTable.getModel();
-        if(EmployeeDataTable.getSelectedRowCount() == 1) {
-
-            String name = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 0).toString();
-            String id = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 1).toString();
-            String username = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 2).toString();
-            String department = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 3).toString();
-            String type = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 4).toString();
-            String pay = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 5).toString();
-            String address = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 6).toString();
-            String evaluation = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 7).toString();
-
-        }
-
-    }
+//    public void EditEmployee(MouseEvent e) {
+//        DefaultTableModel model = (DefaultTableModel) EmployeeDataTable.getModel();
+//        if(EmployeeDataTable.getSelectedRowCount() == 1) {
+//
+//            String name = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 0).toString();
+//            String id = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 1).toString();
+//            String username = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 2).toString();
+//            String department = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 3).toString();
+//            String type = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 4).toString();
+//            String pay = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 5).toString();
+//            String address = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 6).toString();
+//            String evaluation = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 7).toString();
+//
+//        }
+//
+//    }
 
     public static void main(String[] args) {
         new ManageEmployeeDataPage();
