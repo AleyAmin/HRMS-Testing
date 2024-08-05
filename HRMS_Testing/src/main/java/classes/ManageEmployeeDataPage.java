@@ -52,16 +52,18 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
         setVisible(true);
     }
 
-    public void EditEmployee(MouseEvent e) {
+    public void EditEmployee() {
         DefaultTableModel model = (DefaultTableModel) EmployeeDataTable.getModel();
         if(EmployeeDataTable.getSelectedRowCount() == 1) {
 
             String name = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 0).toString();
-            String id = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 1).toString();
             String username = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 2).toString();
             String department = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 3).toString();
             String type = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 4).toString();
-            String evaluation = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 8).toString();
+            String ID = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 1).toString();
+            EditEmployeeDataPage editEmployeeDataPage = new EditEmployeeDataPage();
+            editEmployeeDataPage.EmployeeId(ID);
+            editEmployeeDataPage.setEmployeeData(name,username,department,type);
         }
 
     }
@@ -75,6 +77,8 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
 
         }
         else if(e.getSource() == editButton) {
+            setVisible(false);
+            EditEmployee();
 
         }
         else if(e.getSource() == removeButton) {

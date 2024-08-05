@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyListener {
 
@@ -31,6 +32,29 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
 
     }
 
+    public void setEmployeeData(String n, String u, String d, String t) {
+        NameField.setText(n);
+        UsernameField.setText(u);
+        DepartmentField.setText(d);
+        EmpTypeBox.setSelectedItem(t);
+    }
+    int ID;
+    public void EmployeeId(String id){
+        ID = Integer.parseInt(id);
+    }
+
+    private void changeEmployeeData() {
+        Main main = new Main();
+        main.init();
+
+        Employee employees = main.hre.findEmployeeById(ID);
+
+        employees.setName(NameField.getText());
+        employees.setUsername(UsernameField.getText());
+        employees.setDepartment(DepartmentField.getText());
+        employees.setEmployeeType(EmployeeType.valueOf(EmpTypeBox.getSelectedItem().toString()));
+    }
+
     private void convertStringToEmployeeType(String empType) {
         switch (empType) {
             case "Hourly":
@@ -53,6 +77,15 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == confirmButton) {
+            changeEmployeeData();
+            setVisible(false);
+            new ManageEmployeeDataPage();
+        }
+        else if (e.getSource() == cancelButton) {
+            setVisible(false);
+            new ManageEmployeeDataPage();
+        }
 
     }
 

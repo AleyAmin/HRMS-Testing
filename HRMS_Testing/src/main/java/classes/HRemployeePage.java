@@ -37,8 +37,14 @@ public class HRemployeePage extends JFrame implements ActionListener, KeyListene
             setVisible(false);
             new ManageEmployeeDataPage();
         }
-        else if (e.getSource() == manageLeaveRequestsButton) {}
-        else if (e.getSource() == viewEvaluationButton) {}
+        else if (e.getSource() == manageLeaveRequestsButton) {
+            setVisible(false);
+            new LeaveManagmentPage();
+        }
+        else if (e.getSource() == viewEvaluationButton) {
+            setVisible(false);
+            new EvaluatePerformancePage();
+        }
         else if (e.getSource() == payrollProcessingButton) {}
     }
 

@@ -55,6 +55,10 @@ public class LeaveManagmentPage extends JFrame implements ActionListener, KeyLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == backButton) {
+            setVisible(false);
+            new HRemployeePage();
+        }
 
     }
 
