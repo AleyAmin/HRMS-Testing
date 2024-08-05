@@ -11,9 +11,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EmployeeTest {
-    private Employee employee;
-    private Address address;
-    private Evaluation evaluation;
+    Employee employee;
+    Address address;
 
     @BeforeAll
     public static void Message() {
@@ -23,43 +22,42 @@ public class EmployeeTest {
     @BeforeEach
     public void setUp() {
         address = new Address("Zahraa ElMaadi", "Cairo", "00000", "Egypt");
-        evaluation = Evaluation.Excellent;
-        employee = new Employee("John Doe", 1, "johndoe", "password123", address, "Engineering", EmployeeType.FullTime, evaluation);
+        employee = new Employee("Aley", 101, "Aley", "password", address, "Computer Engineering", EmployeeType.FullTime, Evaluation.Excellent);
     }
 
     @Test
     @DisplayName("Test Employee Initialization")
     public void testEmployeeInitialization() {
-        assertEquals("John Doe", employee.getName());
-        assertEquals(1, employee.getId());
-        assertEquals("johndoe", employee.getUsername());
-        assertEquals("password123", employee.getPassword());
+        assertEquals("Aley", employee.getName());
+        assertEquals(101, employee.getId());
+        assertEquals("Aley", employee.getUsername());
+        assertEquals("password", employee.getPassword());
         assertEquals(address, employee.getAddress());
-        assertEquals("Engineering", employee.getDepartment());
+        assertEquals("Computer Engineering", employee.getDepartment());
         assertEquals(EmployeeType.FullTime, employee.getEmployeeType());
-        assertEquals(evaluation, employee.getEvaluation());
+        assertEquals(Evaluation.Excellent, employee.getEvaluation());
         assertTrue(employee.getPerformanceList().isEmpty());
     }
 
     @Test
     @DisplayName("Test Set and Get Name")
     public void testSetGetName() {
-        employee.setName("Jane Doe");
-        assertEquals("Jane Doe", employee.getName());
+        employee.setName("Ziad");
+        assertEquals("Ziad", employee.getName());
     }
 
     @Test
     @DisplayName("Test Set and Get ID")
     public void testSetGetId() {
-        employee.setId(2);
-        assertEquals(2, employee.getId());
+        employee.setId(102);
+        assertEquals(102, employee.getId());
     }
 
     @Test
     @DisplayName("Test Set and Get Username")
     public void testSetGetUsername() {
-        employee.setUsername("janedoe");
-        assertEquals("janedoe", employee.getUsername());
+        employee.setUsername("Zeze");
+        assertEquals("Zeze", employee.getUsername());
     }
 
     @Test
@@ -72,7 +70,7 @@ public class EmployeeTest {
     @Test
     @DisplayName("Test Set and Get Address")
     public void testSetGetAddress() {
-        Address newAddress = new Address("456 Elm St", "Metropolis", "62960", "USA");
+        Address newAddress = new Address("Nasr city", "Cairo", "00000", "Egypt");
         employee.setAddress(newAddress);
         assertEquals(newAddress, employee.getAddress());
     }
@@ -99,21 +97,19 @@ public class EmployeeTest {
         assertEquals(payroll, employee.getPay());
     }
 
-//    @Test
-//    @DisplayName("Test Add and Get Performance List")
-//    public void testAddGetPerformanceList() {
-//        Performance performance = new Performance("2024-01-01", 90, "Excellent work");
-//        employee.addPerformance(performance);
-//        List<Performance> performanceList = employee.getPerformanceList();
-//        assertEquals(1, performanceList.size());
-//        assertEquals(performance, performanceList.get(0));
-//    }
-//
-//    @Test
-//    @DisplayName("Test Set and Get Evaluation")
-//    public void testSetGetEvaluation() {
-//        Evaluation newEvaluation = new Evaluation(90, "Outstanding performance");
-//        employee.setEvaluation(newEvaluation);
-//        assertEquals(newEvaluation, employee.getEvaluation());
-//    }
+    @Test
+    @DisplayName("Test Add and Get Performance List")
+    public void testAddGetPerformanceList() {
+        employee.addPerformance(Performance.Attendance);
+        List<Performance> performanceList = employee.getPerformanceList();
+        assertEquals(1, performanceList.size());
+        assertEquals(Performance.Attendance, performanceList.get(0));
+    }
+
+    @Test
+    @DisplayName("Test Set and Get Evaluation")
+    public void testSetGetEvaluation() {
+        employee.setEvaluation(Evaluation.Unsatisfactory);
+        assertEquals(Evaluation.Unsatisfactory, employee.getEvaluation());
+    }
 }
