@@ -6,8 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class HRemployeePage extends JFrame implements ActionListener, KeyListener {
-    private JButton submit;
-    private JButton requestLeaveButton;
+    private JButton manageEmployeeDataButton;
+    private JButton manageLeaveRequestsButton;
     private JButton viewEvaluationButton;
     private JPanel HRemployeePanel;
     private JButton payrollProcessingButton;
@@ -20,16 +20,23 @@ public class HRemployeePage extends JFrame implements ActionListener, KeyListene
         setSize(500,500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        submit.addActionListener(this);
-        requestLeaveButton.addActionListener(this);
+        manageEmployeeDataButton.addActionListener(this);
+        manageLeaveRequestsButton.addActionListener(this);
         viewEvaluationButton.addActionListener(this);
         payrollProcessingButton.addActionListener(this);
 
     }
 
+    public static void main(String[] args) {
+        new HRemployeePage();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == manageEmployeeDataButton) {}
+        else if (e.getSource() == manageLeaveRequestsButton) {}
+        else if (e.getSource() == viewEvaluationButton) {}
+        else if (e.getSource() == payrollProcessingButton) {}
     }
 
     @Override
