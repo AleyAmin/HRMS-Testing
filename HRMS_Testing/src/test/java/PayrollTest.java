@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PayrollTest {
     private Payroll fullTimePayroll;
     private Payroll partTimePayroll;
