@@ -11,16 +11,18 @@ public class EmployeePage  extends JFrame implements ActionListener, KeyListener
     private JButton submit;
     private JButton requestLeaveButton;
     private JButton viewEvaluationButton;
+    private JLabel welcome;
 
     private final Employee employee;
 
     public EmployeePage(Employee employee) {
         this.employee = employee;
 
+        welcome.setText("Welcome " + employee.getName());
         setVisible(true);
 
         setContentPane(EmployeePanel);
-        setTitle("HRMS");
+        setTitle("Welcome " + employee.getName());
         setSize(500,500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

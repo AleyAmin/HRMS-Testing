@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class HRemployeeTest {
 
@@ -34,6 +33,13 @@ class HRemployeeTest {
     void testFindEmployeeById() {
         Employee foundEmployee = hrEmployee.findEmployeeById(101);
         assertEquals(employee1, foundEmployee);
+    }
+
+    @Test
+    void TestRemoveEmployee(){
+        int id = employee1.getId();
+        hrEmployee.removeEmployee(id);
+        assertNull(hrEmployee.findEmployeeById(id));
     }
 
     @Test
