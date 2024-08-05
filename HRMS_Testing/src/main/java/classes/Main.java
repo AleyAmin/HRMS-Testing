@@ -8,8 +8,15 @@ public class Main {
         Payroll partTimePayroll = new Payroll(EmployeeType.PartTime, 2500, 0, 500, 250, 100);
         Address address1 = new Address("Zahraa ElMaadi", "Cairo", "00000", "Egypt");
         Address address2 = new Address("Nasr city", "Cairo", "00000", "Egypt");
-        hre.createEmployee("Ziad", 101, "Zeze", "password", address2, "Computer Engineering", EmployeeType.PartTime);
-        hre.createEmployee("Omar", 102, "Bolty", "123", address1, "Computer Engineering", EmployeeType.FullTime);
+        Employee employee1 = hre.createEmployee("Ziad", 101, "Zeze", "password", address2, "Computer Engineering", EmployeeType.PartTime);
+        Employee employee2 = hre.createEmployee("Omar", 102, "Bolty", "123", address1, "Computer Engineering", EmployeeType.FullTime);
+
+        employee1.addPerformance(Performance.Quality);
+        employee1.addPerformance(Performance.Attendance);
+        employee1.addPerformance(Performance.Productivity);
+
+        employee2.addPerformance(Performance.Punctuality);
+        employee2.addPerformance(Performance.Skills);
 
         hre.findEmployeeById(101).setPay(partTimePayroll);
         hre.findEmployeeById(102).setPay(fullTimePayroll);

@@ -18,7 +18,7 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
     private JButton backButton;
     private JLabel AchievedEvaluation;
     private JButton submit;
-
+    Main main = new Main();
     public EvaluatePerformancePage() {
         setVisible(true);
 
@@ -45,25 +45,22 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
     private int convertToInteger(){
         return Integer.parseInt(SearchText.getText());
     }
+    int i;
     private void SearchByID() {
             int ID = convertToInteger();
-            Main main = new Main();
+
             main.init();
 
             Employee employee = main.hre.findEmployeeById(ID);
 
             if (employee != null) {
 
-
-            employee.addPerformance(Performance.Quality);
-            employee.addPerformance(Performance.Attendance);
-            employee.addPerformance(Performance.Productivity);
-
             StringBuilder sb = new StringBuilder();
             for (Performance per : employee.getPerformanceList()) {
                 sb.append(per).append(", ");
             String result = sb.toString().replaceAll(", $", "");
             AchievedPerformance.setText(result);
+
             }
         }
             else {
@@ -73,14 +70,14 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
     }
 
     private void evaluatePerformance() {
-        Main main = new Main();
+
         main.init();
         String Evaluation = main.hre.evaluateEmployeePerformance(convertToInteger()).toString();
         AchievedEvaluation.setText(Evaluation);
     }
 
     private void manualEvaluate() {
-        Main main = new Main();
+
         main.init();
         AchievedEvaluation.setText(comboBox1.getSelectedItem().toString());
     }
