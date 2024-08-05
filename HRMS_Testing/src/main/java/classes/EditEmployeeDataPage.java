@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
+import java.util.Objects;
 
 public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyListener {
 
@@ -42,14 +44,33 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
         ID = Integer.parseInt(id);
     }
 
-    private void changeEmployeeData() {
+    private boolean CheckUniqueUsername(String username, int id) {
+        List<Employee> employees = hre.getAllEmployees();
+
+        for (Employee employee : employees) {
+            if (employee.getUsername().equals(username) && employee.getId() != id) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private int changeEmployeeData() {
 
         Employee employees = hre.findEmployeeById(ID);
+
+        if (NameField.getText().isEmpty() || UsernameField.getText().isEmpty() || DepartmentField.getText().isEmpty()) {
+            return -1;
+        }
+        else if (!(CheckUniqueUsername(UsernameField.getText(), employees.getId()))){
+            return 0;
+        }
 
         employees.setName(NameField.getText());
         employees.setUsername(UsernameField.getText());
         employees.setDepartment(DepartmentField.getText());
-        employees.setEmployeeType(EmployeeType.valueOf(EmpTypeBox.getSelectedItem().toString()));
+        employees.setEmployeeType(EmployeeType.valueOf(Objects.requireNonNull(EmpTypeBox.getSelectedItem()).toString()));
+        return 1;
     }
 
     private void convertStringToEmployeeType(String empType) {
@@ -72,9 +93,18 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmButton) {
-            changeEmployeeData();
-            setVisible(false);
-            new ManageEmployeeDataPage(hre);
+            int status = changeEmployeeData();
+            if (status == 1) {
+                setVisible(false);
+                new ManageEmployeeDataPage(hre);
+            }
+            else if (status == 0) {
+                JOptionPane.showMessageDialog(EditEmployeeDataPanel, "Username already exists", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else if (status == -1) {
+                JOptionPane.showMessageDialog(EditEmployeeDataPanel, "Please fill out all the fields", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
         else if (e.getSource() == cancelButton) {
             setVisible(false);
