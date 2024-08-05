@@ -17,7 +17,6 @@ public class LeaveManagmentPage extends JFrame implements ActionListener, KeyLis
 
     public LeaveManagmentPage(HRemployee hre) {
         this.hre = hre;
-        System.out.println(hre.getLeaveManagement().getAllLeaveRequests().size());
 
         setContentPane(LeaveManagmentPanel);
         setTitle("Manage Employee Data");
@@ -27,14 +26,14 @@ public class LeaveManagmentPage extends JFrame implements ActionListener, KeyLis
 
         List<LeaveRequest> requests = hre.getAllLeaveRequests();
 
-        String[] columnNames = { "ID", "Employee", "Type", "Start Date", "End Date", "Status"};
+        String[] columnNames = { "ID", "Employee ID", "Type", "Start Date", "End Date", "Status"};
 
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
         for (LeaveRequest request : requests) {
             Object[] row = {
                     request.getId(),
-                    request.getEmployee(),
+                    request.getEmployee().getId(),
                     request.getLeaveType(),
                     request.getStartDate(),
                     request.getEndDate(),

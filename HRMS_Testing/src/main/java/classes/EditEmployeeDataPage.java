@@ -20,6 +20,7 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
     HRemployee hre;
 
     public EditEmployeeDataPage(HRemployee hre, String n, String u, String d, String t) {
+        this.hre = hre;
         setVisible(true);
 
         setContentPane(EditEmployeeDataPanel);
