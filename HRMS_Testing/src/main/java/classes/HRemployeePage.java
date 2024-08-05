@@ -27,13 +27,6 @@ public class HRemployeePage extends JFrame implements ActionListener, KeyListene
 
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(HRemployeePage::createAndShowGUI);
-    }
-
-    private static void createAndShowGUI() {new HRemployeePage();}
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
 

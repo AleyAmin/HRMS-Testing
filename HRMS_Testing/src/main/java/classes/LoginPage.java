@@ -9,7 +9,7 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
     private JPasswordField passwordField;
     private JButton submit;
 
-    // private int loginStatus;
+    private int loginStatus;
 
     public LoginPage() {
 
@@ -34,17 +34,23 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
         String username = usernameField.getText().trim();
         String password = new String(passwordField.getPassword()).trim();
 
-        // loginStatus = ----.authenicate(username,password);
+        Main main = new Main();
+        main.init();
 
-        // replace this part with the authenticate method when completed
-        // for example authenicate returns -1 if invalid, 1 if user, 2 if admin
+        loginStatus = main.hre.authenticate(username, password);
 
-        if (username.equals("admin") && password.equals("admin")) {
-            JOptionPane.showMessageDialog(this, "Welcome Admin" );
+        if (loginStatus == 2) {
+            new HRemployeePage();
+            setVisible(false);
         }
-        else if (username.isEmpty() && password.isEmpty()) {
+        else if (loginStatus == -1) {
             JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        else {
+            new EmployeePage(main.hre.findEmployeeById(loginStatus));
+            setVisible(false);
+        }
+
     }
 
     @Override

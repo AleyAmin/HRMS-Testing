@@ -42,7 +42,7 @@ public class HRemployee {
     }
 
     public Employee createEmployee(String name, int id, String username, String password, Address address, String department, EmployeeType employeeType) {
-        Employee newEmployee = new Employee(name, id, username, password, address, department, employeeType,Evaluation.Excellent);
+        Employee newEmployee = new Employee(name, id, username, password, address, department, employeeType, Evaluation.Excellent);
         addEmployee(newEmployee);
         return newEmployee;
     }
@@ -70,6 +70,24 @@ public class HRemployee {
         } else {
             return PerformanceEvaluation.evaluatePerformance(employee1);
         }
+    }
+
+    public int authenticate(String username, String password){
+        int state = -1;
+
+        if(username.equals("admin") && password.equals("admin")){
+            state = 2;
+        }
+        else
+        {
+            for (Employee employee : managedEmployees)
+            {
+                if (username.equals(employee.getUsername()) && password.equals(employee.getPassword())){
+                    return state = employee.getId(); //employee
+                }
+            }
+        }
+        return state;
     }
 
 }

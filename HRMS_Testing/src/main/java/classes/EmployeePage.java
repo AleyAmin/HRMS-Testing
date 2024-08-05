@@ -12,7 +12,11 @@ public class EmployeePage  extends JFrame implements ActionListener, KeyListener
     private JButton requestLeaveButton;
     private JButton viewEvaluationButton;
 
-    public EmployeePage() {
+    private final Employee employee;
+
+    public EmployeePage(Employee employee) {
+        this.employee = employee;
+
         setVisible(true);
 
         setContentPane(EmployeePanel);
@@ -31,18 +35,11 @@ public class EmployeePage  extends JFrame implements ActionListener, KeyListener
         if (e.getSource() == submit) {
         }
         else if (e.getSource() == requestLeaveButton) {
+            new LeaveRequestPage(employee);
         }
         else if (e.getSource() == viewEvaluationButton) {
         }
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(EmployeePage::createAndShowGUI);
-    }
-
-    private static void createAndShowGUI() {new EmployeePage();}
-
-
 
     @Override
     public void keyTyped(KeyEvent e) {

@@ -71,6 +71,8 @@ public class LeaveRequestPage extends JFrame {
                     LeaveRequest leaveRequest = new LeaveRequest(1,employee ,leaveType1 ,startDate ,endDate);
                     LeaveManagement leaveManagement = new LeaveManagement();
                     leaveManagement.addLeaveRequest(leaveRequest);
+
+
                 }
             }
         });
