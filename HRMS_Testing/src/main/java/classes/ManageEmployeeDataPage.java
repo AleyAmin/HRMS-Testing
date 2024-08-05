@@ -14,6 +14,7 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
     private JScrollPane TablePane;
     private JTable EmployeeDataTable;
 
+    Main main = new Main();
     public ManageEmployeeDataPage() {
         setContentPane(ManageEmployeeDataPanel);
         setTitle("Manage Employee Data");
@@ -21,7 +22,7 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Main main = new Main();
+
         main.init();
 
         List<Employee> employees = main.hre.getAllEmployees();
@@ -67,6 +68,16 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
         }
 
     }
+    public void RemoveEmployee() {
+        DefaultTableModel model = (DefaultTableModel) EmployeeDataTable.getModel();
+        if(EmployeeDataTable.getSelectedRowCount() == 1) {
+            main.init();
+
+            main.hre.deleteEmployee(EmployeeDataTable.getSelectedRow());
+        }
+    }
+
+
 
     public static void main(String[] args) {
         new ManageEmployeeDataPage();
@@ -74,6 +85,8 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == addButton) {
+            setVisible(false);
+            new CreateEmployeePage();
 
         }
         else if(e.getSource() == editButton) {
@@ -82,6 +95,7 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
 
         }
         else if(e.getSource() == removeButton) {
+            RemoveEmployee();
 
         }
         else if(e.getSource() == backButton) {

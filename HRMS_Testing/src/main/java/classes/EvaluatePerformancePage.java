@@ -23,7 +23,7 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
         setVisible(true);
 
         setContentPane(EvaluatePerformancePanel);
-        setTitle("Edit Employee Data");
+        setTitle("Evaluate Performance Data");
         setSize(500,500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
