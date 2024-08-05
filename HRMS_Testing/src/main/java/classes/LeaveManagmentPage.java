@@ -50,11 +50,56 @@ public class LeaveManagmentPage extends JFrame implements ActionListener, KeyLis
         setVisible(true);
     }
 
+    public void UpdateTable(){
+        List<LeaveRequest> requests = hre.getAllLeaveRequests();
+
+        String[] columnNames = { "ID", "Employee", "Type", "Start Date", "End Date", "Status"};
+
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        for (LeaveRequest request : requests) {
+            Object[] row = {
+                    request.getId(),
+                    request.getEmployee(),
+                    request.getLeaveType(),
+                    request.getStartDate(),
+                    request.getEndDate(),
+                    request.getLeaveStatus()
+            };
+            model.addRow(row);
+        }
+
+        leaveRequestsTable.setModel(model);
+    }
+
+    public void approveRequest() {
+        DefaultTableModel model = (DefaultTableModel) leaveRequestsTable.getModel();
+        if(leaveRequestsTable.getSelectedRowCount() == 1) {
+            int id = (int) leaveRequestsTable.getValueAt(leaveRequestsTable.getSelectedRow(), 0);
+            hre.approveLeaveRequest(id);
+            UpdateTable();
+        }
+    }
+    public void rejectRequest() {
+        DefaultTableModel model = (DefaultTableModel) leaveRequestsTable.getModel();
+        if(leaveRequestsTable.getSelectedRowCount() == 1) {
+            int id = (int) leaveRequestsTable.getValueAt(leaveRequestsTable.getSelectedRow(), 0);
+            hre.rejectLeaveRequest(id);
+            UpdateTable();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == backButton) {
             setVisible(false);
             new HRemployeePage(hre);
+        }
+        else if(e.getSource() == rejectButton) {
+            rejectRequest();
+        }
+        else if(e.getSource() == ApproveButton) {
+            approveRequest();
         }
     }
 

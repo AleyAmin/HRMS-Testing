@@ -70,7 +70,7 @@ public class LeaveRequestPage extends JFrame {
                 if (result == JOptionPane.OK_OPTION) {
                     assert leaveType != null;
                     convertStringToLeaveType(leaveType);
-                    LeaveRequest leaveRequest = new LeaveRequest(1,employee ,leaveType1 ,startDate ,endDate);
+                    LeaveRequest leaveRequest = new LeaveRequest(hre.getAllLeaveRequests().size(),employee ,leaveType1 ,startDate ,endDate);
                     hre.getLeaveManagement().addLeaveRequest(leaveRequest);
                     System.out.println(hre.getLeaveManagement().getAllLeaveRequests().size());
 
