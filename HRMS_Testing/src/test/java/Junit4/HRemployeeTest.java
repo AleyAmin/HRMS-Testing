@@ -1,19 +1,23 @@
+package Junit4;
+
 import classes.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class HRemployeeTest {
+public class HRemployeeTest {
 
     private HRemployee hrEmployee;
     private Employee employee1;
     private Employee employee2;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         hrEmployee = new HRemployee();
 
         Address address1 = new Address("123 Main St", "Cityville", "12345", "USA");
@@ -24,32 +28,32 @@ class HRemployeeTest {
     }
 
     @Test
-    void testCreateEmployee() {
+    public void testCreateEmployee() {
         assertNotNull(employee1);
         assertNotNull(employee2);
     }
 
     @Test
-    void testFindEmployeeById() {
+    public void testFindEmployeeById() {
         Employee foundEmployee = hrEmployee.findEmployeeById(101);
         assertEquals(employee1, foundEmployee);
     }
 
     @Test
-    void TestRemoveEmployee(){
+    public void TestRemoveEmployee(){
         int id = employee1.getId();
         hrEmployee.removeEmployee(id);
         assertNull(hrEmployee.findEmployeeById(id));
     }
 
     @Test
-    void testEvaluateEmployeePerformance() {
+    public void testEvaluateEmployeePerformance() {
         Evaluation aliceEvaluation = hrEmployee.evaluateEmployeePerformance(101);
         assertEquals(Evaluation.Unsatisfactory, aliceEvaluation);
     }
 
     @Test
-    void testLeaveRequests() {
+    public void testLeaveRequests() {
         LeaveRequest leaveRequest1 = new LeaveRequest(1, employee1, LeaveType.SickLeave, new Date(), new Date());
         LeaveRequest leaveRequest2 = new LeaveRequest(2, employee2, LeaveType.VacationLeave, new Date(), new Date());
 

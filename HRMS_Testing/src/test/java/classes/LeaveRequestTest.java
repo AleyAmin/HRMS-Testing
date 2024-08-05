@@ -1,4 +1,5 @@
-import classes.*;
+package classes;
+
 import org.junit.jupiter.api.*;
 
 import java.util.Calendar;

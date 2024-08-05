@@ -1,14 +1,14 @@
-import classes.Employee;
-import classes.Address;
-import classes.EmployeeType;
-import classes.Performance;
-import classes.Evaluation;
-import classes.Payroll;
-import org.junit.jupiter.api.*;
+package classes;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EmployeeTest {
     Employee employee;

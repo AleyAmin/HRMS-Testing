@@ -1,9 +1,16 @@
-import classes.Payroll;
+package Junit4;
+
 import classes.EmployeeType;
+import classes.Payroll;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
 
-import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PayrollTest {
@@ -12,12 +19,12 @@ public class PayrollTest {
     private Payroll hourlyPayroll;
     private Payroll internPayroll;
 
-    @BeforeAll
+    @BeforeClass
     public static void Message() {
         System.out.println("Testing the Payroll Class");
     }
 
-    @BeforeEach
+    @Before
     public void setUp() {
         fullTimePayroll = new Payroll(EmployeeType.FullTime, 5000, 0, 1000, 500, 200);
         partTimePayroll = new Payroll(EmployeeType.PartTime, 2500, 0, 500, 250, 100);

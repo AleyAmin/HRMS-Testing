@@ -1,18 +1,21 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+package Junit4;
+
 import classes.*;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LeaveManagementTest {
     private LeaveManagement leaveManagement;
     private LeaveRequest leaveRequest1;
     private LeaveRequest leaveRequest2;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         leaveManagement = new LeaveManagement();
         Address address = new Address("Nasr city", "Cairo", "00000", "Egypt");

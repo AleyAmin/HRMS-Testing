@@ -45,32 +45,45 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
 
         EmployeeDataTable.setModel(model);
 
+        addButton.addActionListener(this);
+        editButton.addActionListener(this);
+        removeButton.addActionListener(this);
+        backButton.addActionListener(this);
         setVisible(true);
     }
 
-//    public void EditEmployee(MouseEvent e) {
-//        DefaultTableModel model = (DefaultTableModel) EmployeeDataTable.getModel();
-//        if(EmployeeDataTable.getSelectedRowCount() == 1) {
-//
-//            String name = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 0).toString();
-//            String id = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 1).toString();
-//            String username = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 2).toString();
-//            String department = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 3).toString();
-//            String type = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 4).toString();
-//            String pay = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 5).toString();
-//            String address = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 6).toString();
-//            String evaluation = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 7).toString();
-//
-//        }
-//
-//    }
+    public void EditEmployee(MouseEvent e) {
+        DefaultTableModel model = (DefaultTableModel) EmployeeDataTable.getModel();
+        if(EmployeeDataTable.getSelectedRowCount() == 1) {
+
+            String name = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 0).toString();
+            String id = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 1).toString();
+            String username = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 2).toString();
+            String department = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 3).toString();
+            String type = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 4).toString();
+            String evaluation = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 8).toString();
+        }
+
+    }
 
     public static void main(String[] args) {
         new ManageEmployeeDataPage();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == addButton) {
 
+        }
+        else if(e.getSource() == editButton) {
+
+        }
+        else if(e.getSource() == removeButton) {
+
+        }
+        else if(e.getSource() == backButton) {
+            setVisible(false);
+            new HRemployeePage();
+        }
     }
 
     @Override

@@ -40,15 +40,15 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
         loginStatus = main.hre.authenticate(username, password);
 
         if (loginStatus == 2) {
-            new HRemployeePage();
             setVisible(false);
+            new HRemployeePage();
         }
         else if (loginStatus == -1) {
             JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else {
-            new EmployeePage(main.hre.findEmployeeById(loginStatus));
             setVisible(false);
+            new EmployeePage(main.hre.findEmployeeById(loginStatus));
         }
 
     }

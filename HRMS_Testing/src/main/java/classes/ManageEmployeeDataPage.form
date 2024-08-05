@@ -67,7 +67,9 @@
             <constraints/>
             <properties>
               <autoCreateRowSorter value="true"/>
+              <cellSelectionEnabled value="false"/>
               <fillsViewportHeight value="true"/>
+              <rowSelectionAllowed value="true"/>
             </properties>
           </component>
         </children>

@@ -1,8 +1,5 @@
-import classes.Employee;
-import classes.EmployeeType;
-import classes.Evaluation;
-import classes.Performance;
-import classes.PerformanceEvaluation;
+package classes;
+
 import org.junit.jupiter.api.Test;
 
 
