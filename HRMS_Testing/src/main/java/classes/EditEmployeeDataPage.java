@@ -11,7 +11,6 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
     private JPanel EditEmployeeDataPanel;
     private JTextField NameField;
     private JTextField UsernameField;
-    private JTextField AddressField;
     private JTextField DepartmentField;
     private JComboBox EmpTypeBox;
     private JComboBox EvaluationBox;
