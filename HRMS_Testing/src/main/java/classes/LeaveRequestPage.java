@@ -16,8 +16,10 @@ public class LeaveRequestPage extends JFrame {
     private JLabel RequestLeave;
 
     LeaveType leaveType1;
+    HRemployee hre;
 
-    public LeaveRequestPage(Employee employee) {
+    public LeaveRequestPage(Employee employee, HRemployee hre) {
+        this.hre = hre;
 
         setContentPane(LeaveRequestPanel);
         setSize(500,500);
@@ -69,11 +71,11 @@ public class LeaveRequestPage extends JFrame {
                     assert leaveType != null;
                     convertStringToLeaveType(leaveType);
                     LeaveRequest leaveRequest = new LeaveRequest(1,employee ,leaveType1 ,startDate ,endDate);
-                    LeaveManagement leaveManagement = new LeaveManagement();
-                    leaveManagement.addLeaveRequest(leaveRequest);
+                    hre.getLeaveManagement().addLeaveRequest(leaveRequest);
+                    System.out.println(hre.getLeaveManagement().getAllLeaveRequests().size());
 
                     setVisible(false);
-                    new EmployeePage(employee);
+                    new EmployeePage(employee,hre);
                 }
             }
         });

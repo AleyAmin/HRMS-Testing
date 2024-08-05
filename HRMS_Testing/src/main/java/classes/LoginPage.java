@@ -9,12 +9,27 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
     private JPasswordField passwordField;
     private JButton submit;
 
-    private int loginStatus;
-
     Main main = new Main();
 
     public LoginPage() {
         main.init();
+        System.out.println(main.hre.getLeaveManagement().getAllLeaveRequests().size());
+        setContentPane(LoginPanel);
+        setTitle("HRMS");
+        setSize(500,500);
+        setVisible(true);
+
+        // Close operation
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        submit.addActionListener(this);
+        submit.addKeyListener((KeyListener) this);
+    }
+
+    public LoginPage(HRemployee hre){
+        main.hre = hre;
+
+        System.out.println(hre.getLeaveManagement().getAllLeaveRequests().size());
+
         setContentPane(LoginPanel);
         setTitle("HRMS");
         setSize(500,500);
@@ -36,10 +51,7 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
         String username = usernameField.getText().trim();
         String password = new String(passwordField.getPassword()).trim();
 
-        Main main = new Main();
-        main.init();
-
-        loginStatus = main.hre.authenticate(username, password);
+        int loginStatus = main.hre.authenticate(username, password);
 
         if (loginStatus == 2) {
             setVisible(false);
@@ -50,7 +62,7 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
         }
         else {
             setVisible(false);
-            new EmployeePage(main.hre.findEmployeeById(loginStatus));
+            new EmployeePage(main.hre.findEmployeeById(loginStatus),main.hre);
         }
 
     }

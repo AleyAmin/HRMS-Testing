@@ -185,6 +185,7 @@
             <item value="FullTime"/>
             <item value="Intern"/>
           </model>
+          <selectedIndex value="-1"/>
         </properties>
       </component>
       <component id="c023c" class="javax.swing.JButton" binding="confirmButton" default-binding="true">

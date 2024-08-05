@@ -72,6 +72,10 @@ public class HRemployee {
         }
     }
 
+    public LeaveManagement getLeaveManagement() {
+        return leaveManagement;
+    }
+
     public int authenticate(String username, String password){
         int state = -1;
 

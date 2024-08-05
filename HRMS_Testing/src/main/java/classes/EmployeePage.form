@@ -59,10 +59,23 @@
       </hspacer>
       <vspacer id="ba35c">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="1.0"/>
         </constraints>
       </vspacer>
+      <component id="e2f62" class="javax.swing.JButton" binding="backButton">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.2"/>
+        </constraints>
+        <properties>
+          <horizontalTextPosition value="0"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
+          <text value="Back"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

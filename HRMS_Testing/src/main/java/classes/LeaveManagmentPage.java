@@ -17,6 +17,7 @@ public class LeaveManagmentPage extends JFrame implements ActionListener, KeyLis
 
     public LeaveManagmentPage(HRemployee hre) {
         this.hre = hre;
+        System.out.println(hre.getLeaveManagement().getAllLeaveRequests().size());
 
         setContentPane(LeaveManagmentPanel);
         setTitle("Manage Employee Data");
@@ -43,6 +44,9 @@ public class LeaveManagmentPage extends JFrame implements ActionListener, KeyLis
         }
 
         leaveRequestsTable.setModel(model);
+        backButton.addActionListener(this);
+        rejectButton.addActionListener(this);
+        ApproveButton.addActionListener(this);
 
         setVisible(true);
     }

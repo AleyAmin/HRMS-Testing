@@ -15,6 +15,7 @@ public class HRemployeePage extends JFrame implements ActionListener, KeyListene
 
     public HRemployeePage(HRemployee hre) {
         this.hre = hre;
+        System.out.println(hre.getLeaveManagement().getAllLeaveRequests().size());
 
         setVisible(true);
 
