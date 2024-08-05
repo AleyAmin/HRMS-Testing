@@ -18,12 +18,14 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
     private JButton backButton;
     private JLabel AchievedEvaluation;
     private JButton submit;
-    Main main = new Main();
-    public EvaluatePerformancePage() {
+    HRemployee hre;
+
+    public EvaluatePerformancePage(HRemployee hre) {
+        this.hre = hre;
         setVisible(true);
 
         setContentPane(EvaluatePerformancePanel);
-        setTitle("Evaluate Performance Data");
+        setTitle("Evaluate Performance");
         setSize(500,500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,10 +40,6 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
 
     }
 
-    public static void main(String[] args) {
-        new EvaluatePerformancePage();
-    }
-
     private int convertToInteger(){
         return Integer.parseInt(SearchText.getText());
     }
@@ -49,14 +47,12 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
     private void SearchByID() {
             int ID = convertToInteger();
 
-            main.init();
-
-            Employee employee = main.hre.findEmployeeById(ID);
+            Employee employee = hre.findEmployeeById(ID);
 
             if (employee != null) {
 
             StringBuilder sb = new StringBuilder();
-            for (Performance per : employee.getPerformanceList()) {
+            for (Performanc per : employee.getPerformanceList()) {
                 sb.append(per).append(", ");
             String result = sb.toString().replaceAll(", $", "");
             AchievedPerformance.setText(result);
@@ -71,14 +67,12 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
 
     private void evaluatePerformance() {
 
-        main.init();
-        String Evaluation = main.hre.evaluateEmployeePerformance(convertToInteger()).toString();
+        String Evaluation = hre.evaluateEmployeePerformance(convertToInteger()).toString();
         AchievedEvaluation.setText(Evaluation);
     }
 
     private void manualEvaluate() {
 
-        main.init();
         AchievedEvaluation.setText(comboBox1.getSelectedItem().toString());
     }
 
@@ -95,7 +89,7 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
         }
         else if (e.getSource() == backButton) {
             setVisible(false);
-            new HRemployeePage();
+            new HRemployeePage(hre);
         }
     }
 

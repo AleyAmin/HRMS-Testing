@@ -1,7 +1,5 @@
 package classes;
 
-import com.sun.net.httpserver.Request;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
@@ -15,20 +13,20 @@ public class LeaveManagmentPage extends JFrame implements ActionListener, KeyLis
     private JButton backButton;
     private JScrollPane TablePane;
     private JTable leaveRequestsTable;
+    HRemployee hre;
 
-    public LeaveManagmentPage() {
+    public LeaveManagmentPage(HRemployee hre) {
+        this.hre = hre;
+
         setContentPane(LeaveManagmentPanel);
         setTitle("Manage Employee Data");
         setSize(500,500);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Main main = new Main();
-        main.init();
+        List<LeaveRequest> requests = hre.getAllLeaveRequests();
 
-        List<LeaveRequest> requests = main.hre.getAllLeaveRequests();
-
-        String[] columnNames = { "ID", "Employee", "Type", "Start Date", "End Date", "Status" };
+        String[] columnNames = { "ID", "Employee", "Type", "Start Date", "End Date", "Status"};
 
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
@@ -49,17 +47,12 @@ public class LeaveManagmentPage extends JFrame implements ActionListener, KeyLis
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new LeaveManagmentPage();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == backButton) {
             setVisible(false);
-            new HRemployeePage();
+            new HRemployeePage(hre);
         }
-
     }
 
     @Override

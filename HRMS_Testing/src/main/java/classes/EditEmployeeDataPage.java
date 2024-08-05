@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.List;
 
 public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyListener {
 
@@ -18,8 +17,9 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
     private JButton cancelButton;
 
     EmployeeType employeeType;
+    HRemployee hre;
 
-    public EditEmployeeDataPage() {
+    public EditEmployeeDataPage(HRemployee hre, String n, String u, String d, String t) {
         setVisible(true);
 
         setContentPane(EditEmployeeDataPanel);
@@ -30,24 +30,20 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
         confirmButton.addActionListener(this);
         cancelButton.addActionListener(this);
 
-    }
-
-    public void setEmployeeData(String n, String u, String d, String t) {
         NameField.setText(n);
         UsernameField.setText(u);
         DepartmentField.setText(d);
         EmpTypeBox.setSelectedItem(t);
     }
+
     int ID;
     public void EmployeeId(String id){
         ID = Integer.parseInt(id);
     }
 
     private void changeEmployeeData() {
-        Main main = new Main();
-        main.init();
 
-        Employee employees = main.hre.findEmployeeById(ID);
+        Employee employees = hre.findEmployeeById(ID);
 
         employees.setName(NameField.getText());
         employees.setUsername(UsernameField.getText());
@@ -72,19 +68,16 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
         }
     }
 
-    public static void main(String[] args) {
-        new EditEmployeeDataPage();
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmButton) {
             changeEmployeeData();
             setVisible(false);
-            new ManageEmployeeDataPage();
+            new ManageEmployeeDataPage(hre);
         }
         else if (e.getSource() == cancelButton) {
             setVisible(false);
-            new ManageEmployeeDataPage();
+            new ManageEmployeeDataPage(hre);
         }
 
     }

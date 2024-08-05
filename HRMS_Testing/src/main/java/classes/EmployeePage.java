@@ -1,6 +1,6 @@
 package classes;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -8,7 +8,6 @@ import java.awt.event.KeyListener;
 
 public class EmployeePage  extends JFrame implements ActionListener, KeyListener {
     private JPanel EmployeePanel;
-    private JButton submit;
     private JButton requestLeaveButton;
     private JButton viewEvaluationButton;
     private JLabel welcome;
@@ -26,20 +25,23 @@ public class EmployeePage  extends JFrame implements ActionListener, KeyListener
         setSize(500,500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        submit.addActionListener(this);
         requestLeaveButton.addActionListener(this);
         viewEvaluationButton.addActionListener(this);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == submit) {
-        }
-        else if (e.getSource() == requestLeaveButton) {
+        if (e.getSource() == requestLeaveButton) {
+            setVisible(false);
             new LeaveRequestPage(employee);
         }
         else if (e.getSource() == viewEvaluationButton) {
+            if (employee.getEvaluation() != null)
+            {
+                JOptionPane.showMessageDialog(EmployeePanel, "You are Evaluated as  " + employee.getEvaluation());
+            }
+            else
+                JOptionPane.showMessageDialog(EmployeePanel, "You are Not Evaluated Yet");
         }
     }
 

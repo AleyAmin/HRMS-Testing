@@ -71,6 +71,9 @@ public class LeaveRequestPage extends JFrame {
                     LeaveRequest leaveRequest = new LeaveRequest(1,employee ,leaveType1 ,startDate ,endDate);
                     LeaveManagement leaveManagement = new LeaveManagement();
                     leaveManagement.addLeaveRequest(leaveRequest);
+
+                    setVisible(false);
+                    new EmployeePage(employee);
                 }
             }
         });
@@ -94,10 +97,5 @@ public class LeaveRequestPage extends JFrame {
                 leaveType1 = classes.LeaveType.VacationLeave;
                 break;
         }
-    }
-
-    public static void main(String[] args) {
-        Employee emp1 = new Employee("Alice", 101, "alice", "password", new Address("123 Main St", "Cityville", "12345", "USA"), "HR", EmployeeType.FullTime, Evaluation.Excellent);
-        new LeaveRequestPage(emp1);
     }
 }

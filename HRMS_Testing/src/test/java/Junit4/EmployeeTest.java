@@ -102,10 +102,10 @@ public class EmployeeTest {
     @Test
     @DisplayName("Test Add and Get Performance List")
     public void testAddGetPerformanceList() {
-        employee.addPerformance(Performance.Attendance);
-        List<Performance> performanceList = employee.getPerformanceList();
+        employee.addPerformance(Performanc.Attendance);
+        List<Performanc> performanceList = employee.getPerformanceList();
         assertEquals(1, performanceList.size());
-        assertEquals(Performance.Attendance, performanceList.get(0));
+        assertEquals(Performanc.Attendance, performanceList.get(0));
     }
 
     @Test

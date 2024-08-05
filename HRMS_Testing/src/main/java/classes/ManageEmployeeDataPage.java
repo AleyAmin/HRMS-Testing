@@ -14,20 +14,20 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
     private JScrollPane TablePane;
     private JTable EmployeeDataTable;
 
-    Main main = new Main();
-    public ManageEmployeeDataPage() {
+    HRemployee hre;
+
+    public ManageEmployeeDataPage(HRemployee hre) {
+        this.hre = hre;
+
         setContentPane(ManageEmployeeDataPanel);
         setTitle("Manage Employee Data");
         setSize(500,500);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        List<Employee> employees = hre.getAllEmployees();
 
-        main.init();
-
-        List<Employee> employees = main.hre.getAllEmployees();
-
-        String[] columnNames = { "Name", "ID", "Username", "Department", "Type", "Pay", "Evaluation" };
+        String[] columnNames = { "Name", "ID", "Username", "Department", "Type", "Evaluation" };
 
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
@@ -38,7 +38,6 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
                     employee.getUsername(),
                     employee.getDepartment(),
                     employee.getEmployeeType(),
-                    employee.getPay().calculatePay(),
                     employee.getEvaluation()
             };
             model.addRow(row);
@@ -53,54 +52,70 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
         setVisible(true);
     }
 
+    public void UpdateTable(){
+        List<Employee> employees = hre.getAllEmployees();
+
+        String[] columnNames = { "Name", "ID", "Username", "Department", "Type", "Evaluation" };
+
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        for (Employee employee : employees) {
+            Object[] row = {
+                    employee.getName(),
+                    employee.getId(),
+                    employee.getUsername(),
+                    employee.getDepartment(),
+                    employee.getEmployeeType(),
+                    employee.getEvaluation()
+            };
+            model.addRow(row);
+        }
+
+        EmployeeDataTable.setModel(model);
+    }
+
     public void EditEmployee() {
         DefaultTableModel model = (DefaultTableModel) EmployeeDataTable.getModel();
         if(EmployeeDataTable.getSelectedRowCount() == 1) {
-
             String name = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 0).toString();
             String username = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 2).toString();
             String department = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 3).toString();
             String type = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 4).toString();
             String ID = EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 1).toString();
-            EditEmployeeDataPage editEmployeeDataPage = new EditEmployeeDataPage();
+            setVisible(false);
+            EditEmployeeDataPage editEmployeeDataPage = new EditEmployeeDataPage(hre,name,username,department,type);
             editEmployeeDataPage.EmployeeId(ID);
-            editEmployeeDataPage.setEmployeeData(name,username,department,type);
         }
+        else
+            JOptionPane.showMessageDialog(ManageEmployeeDataPanel, "Please select a row from the table");
 
     }
     public void RemoveEmployee() {
         DefaultTableModel model = (DefaultTableModel) EmployeeDataTable.getModel();
         if(EmployeeDataTable.getSelectedRowCount() == 1) {
-            main.init();
-
-            main.hre.deleteEmployee(EmployeeDataTable.getSelectedRow());
+            int id = (int) EmployeeDataTable.getValueAt(EmployeeDataTable.getSelectedRow(), 1);
+            hre.deleteEmployee(id);
+            UpdateTable();
         }
+        else
+            JOptionPane.showMessageDialog(ManageEmployeeDataPanel, "Please select a row from the table");
     }
 
-
-
-    public static void main(String[] args) {
-        new ManageEmployeeDataPage();
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == addButton) {
             setVisible(false);
-            new CreateEmployeePage();
-
+            new CreateEmployeePage(hre);
         }
         else if(e.getSource() == editButton) {
-            setVisible(false);
             EditEmployee();
-
         }
         else if(e.getSource() == removeButton) {
             RemoveEmployee();
-
         }
         else if(e.getSource() == backButton) {
             setVisible(false);
-            new HRemployeePage();
+            new HRemployeePage(hre);
         }
     }
 

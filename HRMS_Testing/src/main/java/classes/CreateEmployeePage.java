@@ -19,8 +19,11 @@ public class CreateEmployeePage extends JFrame implements ActionListener, KeyLis
     private JTextField PasswordField;
 
     EmployeeType employeeType;
+    HRemployee hre;
 
-    public CreateEmployeePage() {
+    public CreateEmployeePage(HRemployee hre) {
+        this.hre = hre;
+
         setVisible(true);
 
         setContentPane(CreateEmployeePanel);
@@ -32,10 +35,9 @@ public class CreateEmployeePage extends JFrame implements ActionListener, KeyLis
         cancelButton.addActionListener(this);
     }
     private void createEmployeeData() {
-        Main main = new Main();
-        main.init();
-
-        Employee employees = new Employee(NameField.getText(),Integer.parseInt(IDField.getText()),UsernameField.getText(),PasswordField.getText(),null, DepartmentField.getText(),EmployeeType.valueOf(EmpTypeBox.getSelectedItem().toString()),Evaluation.Excellent);
+        Employee employee = new Employee(NameField.getText(),Integer.parseInt(IDField.getText()),UsernameField.getText(),PasswordField.getText(),null, DepartmentField.getText(),EmployeeType.valueOf(EmpTypeBox.getSelectedItem().toString()),Evaluation.Excellent);
+        employee.setPay(null);
+        hre.addEmployee(employee);
     }
 
     @Override
@@ -43,11 +45,11 @@ public class CreateEmployeePage extends JFrame implements ActionListener, KeyLis
         if (e.getSource() == confirmButton) {
             createEmployeeData();
             setVisible(false);
-            new ManageEmployeeDataPage();
+            new ManageEmployeeDataPage(hre);
         }
         else if (e.getSource() == cancelButton) {
             setVisible(false);
-            new ManageEmployeeDataPage();
+            new ManageEmployeeDataPage(hre);
         }
 
     }

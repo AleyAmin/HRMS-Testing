@@ -11,8 +11,11 @@ public class HRemployeePage extends JFrame implements ActionListener, KeyListene
     private JButton viewEvaluationButton;
     private JPanel HRemployeePanel;
     private JButton payrollProcessingButton;
+    HRemployee hre;
 
-    public HRemployeePage() {
+    public HRemployeePage(HRemployee hre) {
+        this.hre = hre;
+
         setVisible(true);
 
         setContentPane(HRemployeePanel);
@@ -27,25 +30,23 @@ public class HRemployeePage extends JFrame implements ActionListener, KeyListene
 
     }
 
-    public static void main(String[] args) {
-        new HRemployeePage();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == manageEmployeeDataButton) {
             setVisible(false);
-            new ManageEmployeeDataPage();
+            new ManageEmployeeDataPage(hre);
         }
         else if (e.getSource() == manageLeaveRequestsButton) {
             setVisible(false);
-            new LeaveManagmentPage();
+            new LeaveManagmentPage(hre);
         }
         else if (e.getSource() == viewEvaluationButton) {
             setVisible(false);
-            new EvaluatePerformancePage();
+            new EvaluatePerformancePage(hre);
         }
-        else if (e.getSource() == payrollProcessingButton) {}
+        else if (e.getSource() == payrollProcessingButton) {
+            setVisible(false);
+        }
     }
 
     @Override

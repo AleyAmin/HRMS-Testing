@@ -8,7 +8,7 @@ public class PerformanceEvaluation {
     private static final int MIN_PERFORMANCE_FOR_NEEDS_IMPROVEMENT = 2;
 
     public static Evaluation evaluatePerformance(Employee employee) {
-        List<Performance> performanceList = employee.getPerformanceList();
+        List<Performanc> performanceList = employee.getPerformanceList();
         int numPerformances = performanceList.size();
 
         if (numPerformances == MIN_PERFORMANCE_FOR_MEETS) {

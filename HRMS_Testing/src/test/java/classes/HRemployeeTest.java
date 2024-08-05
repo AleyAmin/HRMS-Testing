@@ -41,8 +41,10 @@ public class HRemployeeTest {
     @Test
     public void TestRemoveEmployee(){
         int id = employee1.getId();
-        hrEmployee.removeEmployee(id);
+        Assertions.assertTrue(hrEmployee.deleteEmployee(id));
+        hrEmployee.deleteEmployee(id);
         Assertions.assertNull(hrEmployee.findEmployeeById(id));
+
     }
 
     @Test

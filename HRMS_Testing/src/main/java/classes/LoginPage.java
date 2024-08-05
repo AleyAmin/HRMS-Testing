@@ -11,8 +11,10 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
 
     private int loginStatus;
 
-    public LoginPage() {
+    Main main = new Main();
 
+    public LoginPage() {
+        main.init();
         setContentPane(LoginPanel);
         setTitle("HRMS");
         setSize(500,500);
@@ -41,7 +43,7 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
 
         if (loginStatus == 2) {
             setVisible(false);
-            new HRemployeePage();
+            new HRemployeePage(main.hre);
         }
         else if (loginStatus == -1) {
             JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Error", JOptionPane.ERROR_MESSAGE);

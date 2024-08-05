@@ -11,12 +11,12 @@ public class Main {
         Employee employee1 = hre.createEmployee("Ziad", 101, "Zeze", "password", address2, "Computer Engineering", EmployeeType.PartTime);
         Employee employee2 = hre.createEmployee("Omar", 102, "Bolty", "123", address1, "Computer Engineering", EmployeeType.FullTime);
 
-        employee1.addPerformance(Performance.Quality);
-        employee1.addPerformance(Performance.Attendance);
-        employee1.addPerformance(Performance.Productivity);
+        employee1.addPerformance(Performanc.Quality);
+        employee1.addPerformance(Performanc.Attendance);
+        employee1.addPerformance(Performanc.Productivity);
 
-        employee2.addPerformance(Performance.Punctuality);
-        employee2.addPerformance(Performance.Skills);
+        employee2.addPerformance(Performanc.Punctuality);
+        employee2.addPerformance(Performanc.Skills);
 
         hre.findEmployeeById(101).setPay(partTimePayroll);
         hre.findEmployeeById(102).setPay(fullTimePayroll);
