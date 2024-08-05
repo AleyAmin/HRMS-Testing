@@ -1,10 +1,7 @@
 import classes.Payroll;
 import classes.EmployeeType;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,6 +25,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(1)
     @DisplayName("Test Full-Time Employee Pay Calculation")
     public void testFullTimePay() {
         double expectedPay = 5000 + 200 - 1000 - 500;
@@ -35,6 +33,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(2)
     @DisplayName("Test Part-Time Employee Pay Calculation")
     public void testPartTimePay() {
         double expectedPay = 2500 + 100 - 500 - 250;
@@ -42,6 +41,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(3)
     @DisplayName("Test Hourly Employee Pay Calculation")
     public void testHourlyPay() {
         double expectedPay = 20 * 160 + 50 - 300 - 150;
@@ -49,6 +49,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(4)
     @DisplayName("Test Intern Pay Calculation")
     public void testInternPay() {
         double expectedPay = 1000;
@@ -56,6 +57,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(5)
     @DisplayName("Test Invalid Base Salary")
     public void testInvalidBaseSalary() {
         Payroll invalidPayroll = new Payroll(EmployeeType.FullTime, -5000, 0, 1000, 500, 200);
@@ -63,6 +65,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(6)
     @DisplayName("Test Invalid Hours")
     public void testInvalidHours() {
         Payroll invalidPayroll = new Payroll(EmployeeType.Hourly, 20, -160, 300, 150, 50);
@@ -70,6 +73,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(7)
     @DisplayName("Test Invalid Tax")
     public void testInvalidTax() {
         Payroll invalidPayroll = new Payroll(EmployeeType.FullTime, 5000, 0, -1000, 500, 200);
@@ -77,6 +81,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(8)
     @DisplayName("Test Invalid Deductions")
     public void testInvalidDeductions() {
         Payroll invalidPayroll = new Payroll(EmployeeType.FullTime, 5000, 0, 1000, -500, 200);
@@ -84,6 +89,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(9)
     @DisplayName("Test Invalid Bonus")
     public void testInvalidBonus() {
         Payroll invalidPayroll = new Payroll(EmployeeType.FullTime, 5000, 0, 1000, 500, -200);
@@ -91,6 +97,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(10)
     @DisplayName("Test Set and Get Employee Type")
     public void testSetGetEmployeeType() {
         fullTimePayroll.setEmployeeType(EmployeeType.PartTime);
@@ -98,6 +105,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(11)
     @DisplayName("Test Set and Get Base Salary")
     public void testSetGetBaseSalary() {
         fullTimePayroll.setBaseSalary(6000);
@@ -105,6 +113,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(12)
     @DisplayName("Test Set and Get Hours")
     public void testSetGetHours() {
         hourlyPayroll.setHours(120);
@@ -112,6 +121,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(13)
     @DisplayName("Test Set and Get Tax")
     public void testSetGetTax() {
         internPayroll.setTax(200);
@@ -119,6 +129,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(14)
     @DisplayName("Test Set and Get Deductions")
     public void testSetGetDeductions() {
         partTimePayroll.setDeductions(300);
@@ -126,6 +137,7 @@ public class PayrollTest {
     }
 
     @Test
+    @Order(15)
     @DisplayName("Test Set and Get Bonus")
     public void testSetGetBonus() {
         fullTimePayroll.setBonus(300);
