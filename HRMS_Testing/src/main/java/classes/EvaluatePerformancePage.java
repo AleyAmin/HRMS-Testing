@@ -17,6 +17,7 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
     private JComboBox comboBox1;
     private JButton backButton;
     private JLabel AchievedEvaluation;
+    private JButton submit;
 
     public EvaluatePerformancePage() {
         setVisible(true);
@@ -29,32 +30,76 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
         EvaluateButton.addActionListener(this);
         backButton.addActionListener(this);
         comboBox1.addActionListener(this);
+        submit.addActionListener(this);
 
-        Address address = new Address("Zahraa ElMaadi", "Cairo", "00000", "Egypt");
-        Employee employee = new Employee("Aley", 101, "Aley", "password", address, "Computer Engineering", EmployeeType.FullTime, Evaluation.Excellent);
+        SearchText.addKeyListener(this);
 
-        String Evaluation = employee.getEvaluation().toString();
-        AchievedEvaluation.setText(Evaluation);
 
-        employee.addPerformance(Performance.Quality);
-        employee.addPerformance(Performance.Attendance);
-        employee.addPerformance(Performance.Productivity);
-
-        StringBuilder sb = new StringBuilder();
-        for (Performance per : employee.getPerformanceList()) {
-            sb.append(per).append(", ");
-        }
-        String result = sb.toString().replaceAll(", $", "");
-        AchievedPerformance.setText(result);
 
     }
 
     public static void main(String[] args) {
         new EvaluatePerformancePage();
     }
+
+    private int convertToInteger(){
+        return Integer.parseInt(SearchText.getText());
+    }
+    private void SearchByID() {
+            int ID = convertToInteger();
+            Main main = new Main();
+            main.init();
+
+            Employee employee = main.hre.findEmployeeById(ID);
+
+            if (employee != null) {
+
+
+            employee.addPerformance(Performance.Quality);
+            employee.addPerformance(Performance.Attendance);
+            employee.addPerformance(Performance.Productivity);
+
+            StringBuilder sb = new StringBuilder();
+            for (Performance per : employee.getPerformanceList()) {
+                sb.append(per).append(", ");
+            String result = sb.toString().replaceAll(", $", "");
+            AchievedPerformance.setText(result);
+            }
+        }
+            else {
+                JOptionPane.showMessageDialog(this, "Employee ID does not exist", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+    }
+
+    private void evaluatePerformance() {
+        Main main = new Main();
+        main.init();
+        String Evaluation = main.hre.evaluateEmployeePerformance(convertToInteger()).toString();
+        AchievedEvaluation.setText(Evaluation);
+    }
+
+    private void manualEvaluate() {
+        Main main = new Main();
+        main.init();
+        AchievedEvaluation.setText(comboBox1.getSelectedItem().toString());
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == submit) {
+            SearchByID();
+        }
+        else if (e.getSource() == EvaluateButton) {
+            evaluatePerformance();
+        }
+        else if (e.getSource() == comboBox1) {
+            manualEvaluate();
+        }
+        else if (e.getSource() == backButton) {
+            setVisible(false);
+            new HRemployeePage();
+        }
     }
 
     @Override
