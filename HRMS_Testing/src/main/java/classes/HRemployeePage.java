@@ -33,7 +33,10 @@ public class HRemployeePage extends JFrame implements ActionListener, KeyListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == manageEmployeeDataButton) {}
+        if (e.getSource() == manageEmployeeDataButton) {
+            setVisible(false);
+            new ManageEmployeeDataPage();
+        }
         else if (e.getSource() == manageLeaveRequestsButton) {}
         else if (e.getSource() == viewEvaluationButton) {}
         else if (e.getSource() == payrollProcessingButton) {}
