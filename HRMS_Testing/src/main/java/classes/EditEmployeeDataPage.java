@@ -24,7 +24,7 @@ public class EditEmployeeDataPage extends JFrame implements ActionListener, KeyL
         setVisible(true);
 
         setContentPane(EditEmployeeDataPanel);
-        setTitle("Manage Employee Data");
+        setTitle("Edit Employee Data");
         setSize(500,500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
