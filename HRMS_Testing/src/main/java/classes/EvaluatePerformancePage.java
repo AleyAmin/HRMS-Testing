@@ -72,8 +72,9 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
     }
 
     private void manualEvaluate() {
-
+        Employee employee = hre.findEmployeeById(convertToInteger());
         AchievedEvaluation.setText(comboBox1.getSelectedItem().toString());
+        employee.setEvaluation(Evaluation.valueOf(comboBox1.getSelectedItem().toString()));
     }
 
     @Override
