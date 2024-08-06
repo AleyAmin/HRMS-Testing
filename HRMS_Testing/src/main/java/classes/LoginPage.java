@@ -13,7 +13,7 @@ public class LoginPage extends JFrame implements ActionListener , KeyListener {
 
     public LoginPage() {
         main.init();
-        System.out.println(main.hre.getLeaveManagement().getAllLeaveRequests().size());
+
         setContentPane(LoginPanel);
         setTitle("HRMS");
         setSize(500,500);

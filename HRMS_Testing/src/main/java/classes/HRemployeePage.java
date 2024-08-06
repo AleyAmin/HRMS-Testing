@@ -47,6 +47,7 @@ public class HRemployeePage extends JFrame implements ActionListener, KeyListene
         }
         else if (e.getSource() == payrollProcessingButton) {
             setVisible(false);
+            new PayrollProccessingPage(hre);
         }
     }
 

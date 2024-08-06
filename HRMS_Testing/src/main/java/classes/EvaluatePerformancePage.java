@@ -45,23 +45,22 @@ public class EvaluatePerformancePage extends JFrame implements ActionListener, K
     }
     int i;
     private void SearchByID() {
-            int ID = convertToInteger();
+        int ID = convertToInteger();
 
-            Employee employee = hre.findEmployeeById(ID);
+        Employee employee = hre.findEmployeeById(ID);
 
-            if (employee != null) {
+        if (employee != null) {
 
             StringBuilder sb = new StringBuilder();
-            for (Performanc per : employee.getPerformanceList()) {
+            for (Performance per : employee.getPerformanceList()) {
                 sb.append(per).append(", ");
-            String result = sb.toString().replaceAll(", $", "");
-            AchievedPerformance.setText(result);
-
+                String result = sb.toString().replaceAll(", $", "");
+                AchievedPerformance.setText(result);
             }
         }
-            else {
-                JOptionPane.showMessageDialog(this, "Employee ID does not exist", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+        else {
+            JOptionPane.showMessageDialog(this, "Employee ID does not exist", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }
 

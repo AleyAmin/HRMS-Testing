@@ -17,8 +17,8 @@ class PerformanceEvaluationTest {
     @Test
     void testEvaluatePerformance_NeedsImprovement() {
         Employee employee = new Employee("Bob", 102, "bob", "password", null, "IT", EmployeeType.PartTime,Evaluation.Excellent);
-        employee.addPerformance(Performanc.Productivity);
-        employee.addPerformance(Performanc.Quality);
+        employee.addPerformance(Performance.Productivity);
+        employee.addPerformance(Performance.Quality);
 
         Evaluation evaluation = PerformanceEvaluation.evaluatePerformance(employee);
         assertEquals(Evaluation.NeedsImprovement, evaluation);
@@ -27,9 +27,9 @@ class PerformanceEvaluationTest {
     @Test
     void testEvaluatePerformance_MeetsExpectations() {
         Employee employee = new Employee("Charlie", 103, "charlie", "password", null, "Marketing", EmployeeType.Intern,Evaluation.Excellent);
-        employee.addPerformance(Performanc.Quality);
-        employee.addPerformance(Performanc.Punctuality);
-        employee.addPerformance(Performanc.Skills);
+        employee.addPerformance(Performance.Quality);
+        employee.addPerformance(Performance.Punctuality);
+        employee.addPerformance(Performance.Skills);
 
         Evaluation evaluation = PerformanceEvaluation.evaluatePerformance(employee);
         assertEquals(Evaluation.MeetsExpectations, evaluation);
@@ -37,10 +37,10 @@ class PerformanceEvaluationTest {
     @Test
     void testEvaluatePerformance_Excellent() {
         Employee employee = new Employee("Charlie", 103, "charlie", "password", null, "Marketing", EmployeeType.Intern,Evaluation.Excellent);
-        employee.addPerformance(Performanc.Quality);
-        employee.addPerformance(Performanc.Punctuality);
-        employee.addPerformance(Performanc.Skills);
-        employee.addPerformance(Performanc.Attendance);
+        employee.addPerformance(Performance.Quality);
+        employee.addPerformance(Performance.Punctuality);
+        employee.addPerformance(Performance.Skills);
+        employee.addPerformance(Performance.Attendance);
 
 
         Evaluation evaluation = PerformanceEvaluation.evaluatePerformance(employee);
@@ -49,11 +49,11 @@ class PerformanceEvaluationTest {
     @Test
     void testEvaluatePerformance_OverAchieving() {
         Employee employee = new Employee("Charlie", 103, "charlie", "password", null, "Marketing", EmployeeType.Intern,Evaluation.Excellent);
-        employee.addPerformance(Performanc.Quality);
-        employee.addPerformance(Performanc.Punctuality);
-        employee.addPerformance(Performanc.Skills);
-        employee.addPerformance(Performanc.Attendance);
-        employee.addPerformance(Performanc.Productivity);
+        employee.addPerformance(Performance.Quality);
+        employee.addPerformance(Performance.Punctuality);
+        employee.addPerformance(Performance.Skills);
+        employee.addPerformance(Performance.Attendance);
+        employee.addPerformance(Performance.Productivity);
 
 
 
