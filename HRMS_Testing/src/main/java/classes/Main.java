@@ -10,6 +10,7 @@ public class Main {
         Address address2 = new Address("Nasr city", "Cairo", "00000", "Egypt");
         Employee employee1 = hre.createEmployee("Ziad", 101, "Zeze", "password", address2, "Computer Engineering", EmployeeType.PartTime);
         Employee employee2 = hre.createEmployee("Omar", 102, "Bolty", "123", address1, "Computer Engineering", EmployeeType.FullTime);
+        Employee employee3 = hre.createEmployee("Hassan", 103, "Inspired", "aaa", address1, "Computer Engineering", EmployeeType.Hourly);
 
         employee1.addPerformance(Performance.Quality);
         employee1.addPerformance(Performance.Attendance);
@@ -20,5 +21,6 @@ public class Main {
 
         hre.findEmployeeById(101).setPay(partTimePayroll);
         hre.findEmployeeById(102).setPay(fullTimePayroll);
+
     }
 }

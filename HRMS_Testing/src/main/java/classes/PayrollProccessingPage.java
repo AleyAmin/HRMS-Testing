@@ -88,11 +88,23 @@ public class PayrollProccessingPage extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(PayrollProccessingPanel, "Invalid Bonus", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else if (status == 1) {
-                employee.getPay().setBaseSalary(Double.parseDouble(baseSalaryField.getText()));
-                employee.getPay().setHours(Integer.parseInt(hoursField.getText()));
-                employee.getPay().setTax(Double.parseDouble(taxField.getText()));
-                employee.getPay().setDeductions(Double.parseDouble(deductionsField.getText()));
-                employee.getPay().setBonus(Double.parseDouble(bonusField.getText()));
+                if (employee.getPay() != null){
+                    employee.getPay().setBaseSalary(Double.parseDouble(baseSalaryField.getText()));
+                    employee.getPay().setHours(Integer.parseInt(hoursField.getText()));
+                    employee.getPay().setTax(Double.parseDouble(taxField.getText()));
+                    employee.getPay().setDeductions(Double.parseDouble(deductionsField.getText()));
+                    employee.getPay().setBonus(Double.parseDouble(bonusField.getText()));
+                }
+                else{
+                    Payroll payroll = new Payroll(
+                                                employee.getEmployeeType(),
+                                                Double.parseDouble(baseSalaryField.getText()),
+                                                Integer.parseInt(hoursField.getText()),
+                                                Double.parseDouble(taxField.getText()),
+                                                Double.parseDouble(deductionsField.getText()),
+                                                Double.parseDouble(bonusField.getText()));
+                    employee.setPay(payroll);
+                }
 
                 setVisible(false);
                 new HRemployeePage(hre);
@@ -104,11 +116,20 @@ public class PayrollProccessingPage extends JFrame implements ActionListener {
         }
         else if (e.getSource() == comboBox1) {
             employee = hre.findEmployeeById((int)comboBox1.getSelectedItem());
-            baseSalaryField.setText(String.valueOf(employee.getPay().getBaseSalary()));
-            hoursField.setText(String.valueOf(employee.getPay().getHours()));
-            taxField.setText(String.valueOf(employee.getPay().getTax()));
-            deductionsField.setText(String.valueOf(employee.getPay().getDeductions()));
-            bonusField.setText(String.valueOf(employee.getPay().getBonus()));
+            if (employee.getPay() != null){
+                baseSalaryField.setText(String.valueOf(employee.getPay().getBaseSalary()));
+                hoursField.setText(String.valueOf(employee.getPay().getHours()));
+                taxField.setText(String.valueOf(employee.getPay().getTax()));
+                deductionsField.setText(String.valueOf(employee.getPay().getDeductions()));
+                bonusField.setText(String.valueOf(employee.getPay().getBonus()));
+            }
+            else{
+                baseSalaryField.setText("0");
+                hoursField.setText("0");
+                taxField.setText("0");
+                deductionsField.setText("0");
+                bonusField.setText("0");
+            }
         }
     }
 

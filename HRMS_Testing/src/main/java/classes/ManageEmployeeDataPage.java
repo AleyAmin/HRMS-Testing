@@ -25,25 +25,7 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        List<Employee> employees = hre.getAllEmployees();
-
-        String[] columnNames = { "Name", "ID", "Username", "Department", "Type", "Evaluation" };
-
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
-        for (Employee employee : employees) {
-            Object[] row = {
-                    employee.getName(),
-                    employee.getId(),
-                    employee.getUsername(),
-                    employee.getDepartment(),
-                    employee.getEmployeeType(),
-                    employee.getEvaluation()
-            };
-            model.addRow(row);
-        }
-
-        EmployeeDataTable.setModel(model);
+        UpdateTable();
 
         addButton.addActionListener(this);
         editButton.addActionListener(this);
@@ -55,7 +37,7 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
     public void UpdateTable(){
         List<Employee> employees = hre.getAllEmployees();
 
-        String[] columnNames = { "Name", "ID", "Username", "Department", "Type", "Evaluation" };
+        String[] columnNames = { "Name", "ID", "Username", "Department", "Pay", "Type", "Evaluation" };
 
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
@@ -65,6 +47,7 @@ public class ManageEmployeeDataPage extends JFrame implements ActionListener, Ke
                     employee.getId(),
                     employee.getUsername(),
                     employee.getDepartment(),
+                    (employee.getPay() != null) ? employee.getPay().calculatePay():0,
                     employee.getEmployeeType(),
                     employee.getEvaluation()
             };
